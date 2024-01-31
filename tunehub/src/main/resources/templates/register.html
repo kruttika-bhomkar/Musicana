@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<title>Register</title>
+</head>
+<body>
+<h1>Register Here</h1>
+	<div class="form-container">
+	<form action="register" method="POST">
+		<label>User name : </label>
+		<input type="text" name="username" required="required"/>
+		<br>
+		<label>Email : </label>
+		<input type="text" name="email" required="required"/>
+		<br>
+		<label>Password : </label>
+		<input type="password" name="password" required="required"/>
+		<br>
+		<label>Gender : </label>
+		M<input type="radio" name="gender" value="male"/>
+		F<input type="radio" name="gender" value="female"/>
+		O<input type="radio" name="gender" value="other"/>
+	
+		<label>Role : </label>
+		Admin<input type="radio" name="role" value="admin" />
+		Customer<input type="radio" name="role" value="customer" checked="checked"/>
+		
+		<label>Address : </label>
+		<textarea name="address"></textarea>
+		<br>
+		<input type="submit" value="Register"/><br>
+		<p>Already a user? <a href="login">Sign In!</a></p>s
+	</form>	
+	
+	</div>
+</body>
+</html>

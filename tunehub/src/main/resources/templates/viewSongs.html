@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Songs List</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<style type="text/css">
+	iframe{
+		height: 100px;
+		width:500px;
+	}
+</style>
+<script type="text/javascript">
+	
+	document.addEventListener('DOMContentLoaded',function(){
+		var allAudioElements=document.getElementsByClassName('audio-player');
+		
+		function pauseOtherAudio(currentAudio){
+			for(var i=0; i < allAudioElements.length; i++){
+				if(allAudioElements[i] !== currentAudio)
+				{
+					allAudioElements[i].pause();
+				}
+			}
+		}
+		for(var i=0;i<allAudioElements.length;i++){
+			allAudioElements[i].addEventListener('play',function (event){
+				pauseOtherAudio(event.target);
+			});
+		}
+		var audio=document.getElementByClassName("audio-player");
+		
+		function playPause(){
+			if(audio.paused){
+				audio.play();
+				document.getElementById("playpause").innerHTML="Pause";
+			}
+			else{
+				audio.pause();
+				document.getElementById("playpause").innerHTML="Play";
+			
+			}
+		}
+	});
+	
+</script>
+</head>
+<body>
+<h1>Songs List</h1>
+<div>
+<table border>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Artist</th>
+			<th>Genre</th>
+			<th>Play</th>
+		</tr>
+		<tr th:each="song:${songs}">
+			<td th:text="${song.name}"></td>
+			<td th:text="${song.artist}">Artist</td>
+			<td th:text="${song.genre}">Genre</td>
+			<td>
+				<audio type="audio/mpeg" class="audio-player" th:src="${song.link}" controls></audio>
+				<button id="playpause" onclick="playPause()">Play</button>
+			</td>
+		</tr>
+		
+	</thead>
+</table>
+</div>
+</body>
+</html>
